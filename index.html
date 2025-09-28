@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>الحريفية المغربية</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <h1>الحريفية المغربية</h1>
+    <p>منصّة تجمع الحرفيين المغاربة والزبناء في مكان واحد</p>
+  </header>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button id="tab1" class="tab active" onclick="showTab(1)">أنا حرفي</button>
+    <button id="tab2" class="tab" onclick="showTab(2)">أبحث عن حرفي</button>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Tab 1: تسجيل الحرفي -->
+    <section id="artisan-form" class="tab-content active">
+      <h2>مرحباً بك يا حرفي! 🛠️</h2>
+      <p>سجّل معلوماتك بدقة علشان يلقاك الزبناء اللي كيقلّبوا عليك.</p>
+      
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="name">الاسم الكامل *</label>
+          <input type="text" id="name" placeholder="مثال: أحمد التلمساني" required />
+        </div>
+
+        <div class="form-group">
+          <label for="profession">المهنة *</label>
+          <input type="text" id="profession" placeholder="مثال: سباك، نجّار، كهربائي..." required />
+        </div>
+
+        <div class="form-group">
+          <label for="serviceArea">مكان تقديم الخدمة *</label>
+          <input type="text" id="serviceArea" placeholder="مثال: الدار البيضاء، أو 'أتنقل لجميع المدن'" required />
+        </div>
+
+        <div class="form-group">
+          <label for="repairs">الأعطال أو الخدمات اللي كتقدمها *</label>
+          <textarea id="repairs" placeholder="مثال: تسريب الماء، انسداد الأنابيب، تركيب الحنفيات..." rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="description">وصف عنك (اختياري)</label>
+          <textarea id="description" placeholder="مثال: خبرة 10 سنوات، أسعار مناسبة، ضمان على الشغل..." rows="3"></textarea>
+        </div>
+
+        <!-- الإعدادات -->
+        <div class="form-group settings-section">
+          <h3>⚙️ الإعدادات</h3>
+          <div class="settings-row">
+            <label for="phone">رقم الهاتف (اختياري لكن موصى به)</label>
+            <input type="tel" id="phone" placeholder="06XXXXXXXX" />
+          </div>
+          <div class="settings-row">
+            <label for="photoUrl">صورة (رابط أو اختر ملف)</label>
+            <input type="text" id="photoUrl" placeholder="لصق رابط الصورة (اختياري)" />
+            <input type="file" id="photoFile" accept="image/*" style="margin-top: 0.5rem;" />
+            <small style="display: block; margin-top: 0.3rem; color: #666;">أو اختر صورة من جهازك</small>
+          </div>
+          <div class="settings-row">
+            <label>
+              <input type="checkbox" id="available" checked />
+              الخدمة متاحة حالياً
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="rating">التقييم الابتدائي (من 1 إلى 5)</label>
+          <input type="number" id="rating" min="1" max="5" step="0.5" placeholder="مثال: 4.5" />
+        </div>
+
+        <button type="submit" class="btn-primary">أضف حرفتك</button>
+      </form>
+    </section>
+
+    <!-- Tab 2: البحث عن الحرفيين -->
+    <section id="search-artisans" class="tab-content">
+      <h2>مرحباً بك! نتمنى تلقى الحرفي اللي بغيتي 💼</h2>
+      <p>هنا تلقى لائحة الحرفيين المسجلين مع تقييماتهم وأماكنهم.</p>
+      
+      <div class="controls">
+        <input type="text" id="searchInput" placeholder="ابحث بالاسم، المهنة، أو نوع العطل..." />
+        <select id="cityFilter">
+          <option value="">جميع المدن</option>
+          <option value="الدار البيضاء">الدار البيضاء</option>
+          <option value="الرباط">الرباط</option>
+          <option value="فاس">فاس</option>
+          <option value="مراكش">مراكش</option>
+          <option value="أكادير">أكادير</option>
+          <option value="طنجة">طنجة</option>
+          <option value="وجدة">وجدة</option>
+          <option value="أغادير">أغادير</option>
+          <option value="أتنقل لجميع المدن">أتنقل لجميع المدن</option>
+        </select>
+        <button id="exportBtn" class="btn-secondary">تصدير البيانات (JSON)</button>
+      </div>
+
+      <div id="artisansList" class="artisans-list"></div>
+    </section>
+  </main>
+
+  <!-- نظام الإشعارات -->
+  <div id="notification" class="notification"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
